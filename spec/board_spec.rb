@@ -48,5 +48,19 @@ describe Board do
         expect(board_in_progress.winner?).to be false
       end
     end
+
+    context 'when there is a vertical win with all purple tokens' do
+      board_setup = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                     [' ', ' ', ' ', ' ', pu, ' ', ' '],
+                     [' ', ' ', ' ', ' ', pu, ' ', ' '],
+                     [' ', ' ', ' ', ' ', pu, ' ', ' '],
+                     [' ', ' ', ' ', ' ', pu, ' ', ' '],
+                     [' ', ' ', ' ', ' ', ' ', ' ', ' ']]
+      subject(:purple_vert_win) { described_class.new(board_setup) }
+
+      it 'returns true' do
+        expect(purple_vert_win.winner?).to be true
+      end
+    end
   end
 end
