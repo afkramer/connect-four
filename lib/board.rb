@@ -39,4 +39,11 @@ class Board
     end
     win
   end
+
+  def diagonal_win?
+    win = false
+    a, b, c, d = nil
+    until d > @board.flatten.length
+    end
+  end
 end
