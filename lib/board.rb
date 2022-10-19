@@ -11,7 +11,7 @@ class Board
   end
 
   def winner?
-    horizontal_win?
+    horizontal_win? || vertical_win?
   end
 
   private
@@ -20,6 +20,18 @@ class Board
     win = false
     @board.each do |row|
       case row
+      in [*_, PIECE1, PIECE1, PIECE1, PIECE1, *_] | [*_, PIECE2, PIECE2, PIECE2, PIECE2, *_]
+        win = true
+      else
+      end
+    end
+    win
+  end
+
+  def vertical_win?
+    win = false
+    @board.transpose.each do |col|
+      case col
       in [*_, PIECE1, PIECE1, PIECE1, PIECE1, *_] | [*_, PIECE2, PIECE2, PIECE2, PIECE2, *_]
         win = true
       else

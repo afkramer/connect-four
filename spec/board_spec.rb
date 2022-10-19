@@ -39,7 +39,7 @@ describe Board do
       board_setup = [[' ', ' ', ' ', ' ', ye, ' ', ' '],
                      [' ', pu, pu, ' ', ' ', ' ', ' '],
                      [' ', ' ', ' ', pu, ' ', ' ', ' '],
-                     [' ', ' ', ' ', pu, ' ', ' '],
+                     [' ', ' ', ' ', pu, ' ', ' ', ' '],
                      [ye, ' ', ye, ' ', ye, ' ', ye],
                      [' ', ' ', ' ', ' ', ' ', ' ', ' ']]
       subject(:board_in_progress) { described_class.new(board_setup) }
