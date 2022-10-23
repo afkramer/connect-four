@@ -3,6 +3,7 @@
 class Board
   HEIGHT = 6
   WIDTH = 7
+  NUMBER_TO_CONNECT = 4
   PIECE1 = "\u2652"
   PIECE2 = "\u264c"
 
@@ -11,7 +12,7 @@ class Board
   end
 
   def winner?
-    horizontal_win? || vertical_win?
+    horizontal_win? || vertical_win? || diagonal_down_win?
   end
 
   private
@@ -40,10 +41,18 @@ class Board
     win
   end
 
-  def diagonal_win?
+  def diagonal_down_win?
     win = false
-    a, b, c, d = nil
-    until d > @board.flatten.length
+    (0...HEIGHT - (NUMBER_TO_CONNECT - 1)).each do |row|
+      (0...WIDTH - (NUMBER_TO_CONNECT - 1)).each do |col|
+        four_to_check = [@board[row][col], @board[row + 1][col + 1], @board[row + 2][col + 2], @board[row + 3][col + 3]]
+        case four_to_check
+        in [*_, PIECE1, PIECE1, PIECE1, PIECE1, *_] | [*_, PIECE2, PIECE2, PIECE2, PIECE2, *_]
+          win = true
+        else
+        end
+      end
     end
+    win
   end
 end
