@@ -77,17 +77,31 @@ describe Board do
       end
     end
 
-    context 'when there is a purple diagonal win' do
+    context 'when there is a purple downward diagonal win' do
       board_setup = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
                      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
                      [' ', pur, ' ', ' ', ' ', ' ', ' '],
                      [' ', yel, pur, ' ', ' ', ' ', ' '],
                      [' ', pur, yel, pur, ' ', ' ', ' '],
                      [' ', pur, yel, yel, pur, ' ', ' ']]
-      subject(:purple_diag_win) { described_class.new(board_setup) }
+      subject(:purple_down_diag_win) { described_class.new(board_setup) }
 
       it 'returns true' do
-        expect(purple_diag_win.winner?).to be true
+        expect(purple_down_diag_win.winner?).to be true
+      end
+    end
+
+    context 'when there is a yellow upward diagonal win' do
+      board_setup = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                     [' ', ' ', ' ', ' ', ' ', ' ', yel],
+                     [' ', ' ', ' ', ' ', ' ', yel, pur],
+                     [' ', ' ', ' ', ' ', yel, pur, pur],
+                     [' ', ' ', pur, yel, yel, yel, pur],
+                     [pur, yel, pur, pur, pur, yel, yel]]
+      subject(:yellow_up_diag_win) { described_class.new(board_setup) }
+
+      it 'returns true' do
+        expect(yellow_up_diag_win.winner?).to be true
       end
     end
   end
