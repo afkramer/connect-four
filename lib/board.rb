@@ -61,16 +61,19 @@ class Board
     ((HEIGHT - NUMBER_TO_CONNECT)...(HEIGHT - 1)).to_a.reverse.each do |row|
       (0...WIDTH - (NUMBER_TO_CONNECT - 1)).each do |col|
         four_to_check = [@board[row][col], @board[row - 1][col + 1], @board[row - 2][col + 2], @board[row - 3][col + 3]]
-        case four_to_check
-        in [*_, PIECE1, PIECE1, PIECE1, PIECE1, *_] | [*_, PIECE2, PIECE2, PIECE2, PIECE2, *_]
-          win = true
-        else
-        end
+        win = winning_pattern_match?(four_to_check) if winning_pattern_match?(four_to_check)
       end
     end
     win
   end
 
+  def winning_pattern_match?(pattern_to_match)
+    case pattern_to_match
+    in [*_, PIECE1, PIECE1, PIECE1, PIECE1, *_] | [*_, PIECE2, PIECE2, PIECE2, PIECE2, *_]
+      true
+    else
+    end
+  end
 end
 
 pur = "\u2652"
