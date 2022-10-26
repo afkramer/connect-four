@@ -20,11 +20,7 @@ class Board
   def horizontal_win?
     win = false
     @board.each do |row|
-      case row
-      in [*_, PIECE1, PIECE1, PIECE1, PIECE1, *_] | [*_, PIECE2, PIECE2, PIECE2, PIECE2, *_]
-        win = true
-      else
-      end
+      win = winning_pattern_match?(row) if winning_pattern_match?(row)
     end
     win
   end
@@ -32,11 +28,7 @@ class Board
   def vertical_win?
     win = false
     @board.transpose.each do |col|
-      case col
-      in [*_, PIECE1, PIECE1, PIECE1, PIECE1, *_] | [*_, PIECE2, PIECE2, PIECE2, PIECE2, *_]
-        win = true
-      else
-      end
+      win = winning_pattern_match?(col) if winning_pattern_match?(col)
     end
     win
   end
@@ -46,11 +38,7 @@ class Board
     (0...HEIGHT - (NUMBER_TO_CONNECT - 1)).each do |row|
       (0...WIDTH - (NUMBER_TO_CONNECT - 1)).each do |col|
         four_to_check = [@board[row][col], @board[row + 1][col + 1], @board[row + 2][col + 2], @board[row + 3][col + 3]]
-        case four_to_check
-        in [*_, PIECE1, PIECE1, PIECE1, PIECE1, *_] | [*_, PIECE2, PIECE2, PIECE2, PIECE2, *_]
-          win = true
-        else
-        end
+        win = winning_pattern_match?(four_to_check) if winning_pattern_match?(four_to_check)
       end
     end
     win
