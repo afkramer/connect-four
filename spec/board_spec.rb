@@ -6,6 +6,28 @@ describe Board do
   pur = "\u2652"
   yel = "\u264c"
 
+  describe '#drop_token' do
+    context 'when the board is empty' do
+      board_setup = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                     [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                     [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                     [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                     [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                     [' ', ' ', ' ', ' ', ' ', ' ', ' ']]
+      subject(:blank_board) { described_class.new(board_setup) }
+
+      it 'matches expected board state after drop' do
+        expected_board_state = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                                [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                                [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                                [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                                [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                                [' ', pur, ' ', ' ', ' ', ' ', ' ']]
+        expect(blank_board.drop_token(2, pur).get_board).to eq(expected_board_state)
+      end
+    end
+  end
+
   describe '#winner?' do
     context 'when there is no winner' do
       board_setup = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
