@@ -23,7 +23,8 @@ describe Board do
                                 [' ', ' ', ' ', ' ', ' ', ' ', ' '],
                                 [' ', ' ', ' ', ' ', ' ', ' ', ' '],
                                 [' ', pur, ' ', ' ', ' ', ' ', ' ']]
-        expect(blank_board.drop_token(2, pur).get_board).to eq(expected_board_state)
+        blank_board.drop_token(2, pur)
+        expect(blank_board.board).to eq(expected_board_state)
       end
     end
   end

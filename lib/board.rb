@@ -6,9 +6,22 @@ class Board
   NUMBER_TO_CONNECT = 4
   PIECE1 = "\u2652"
   PIECE2 = "\u264c"
+  PIECES = [PIECE1, PIECE2].freeze
+
+  attr_reader :board
 
   def initialize(board = nil)
     @board = board || Array.new(HEIGHT) { Array.new(WIDTH, ' ') }
+  end
+
+  # column is from user input (index starts at 1)
+  def drop_token(column, token)
+    target_row = first_free_space(column - 1)
+    if target_row
+      @board[target_row][column - 1] = token
+    else
+      @board[HEIGHT - 1][column - 1] = token
+    end
   end
 
   def winner?
@@ -16,6 +29,20 @@ class Board
   end
 
   private
+
+  # expects column using index starting at 0
+  def first_free_space(column)
+    min_positions = []
+    PIECES.each do |piece|
+      min_positions << @board.transpose[column].index(piece) unless @board.transpose[column].index(piece).nil?
+    end
+
+    if min_positions.empty? || min_positions.min.zero?
+      nil
+    else
+      min_positions.min - 1
+    end
+  end
 
   def horizontal_win?
     win = false
@@ -74,4 +101,5 @@ board_setup = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
                      [pur, yel, pur, pur, pur, yel, yel]]
 
 board = Board.new(board_setup)
-puts board.winner?
+board.drop_token(2, pur)
+p board.board
