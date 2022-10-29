@@ -28,6 +28,27 @@ describe Board do
       end
     end
 
+    context 'when the column has tokens in it' do
+      board_setup = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                     [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                     [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                     [' ', ' ', ' ', ' ', ' ', yel, ' '],
+                     [' ', ' ', ' ', yel, ' ', pur, ' '],
+                     [' ', yel, ' ', pur, pur, yel, ' ']]
+      subject(:board_with_tokens) { described_class.new(board_setup) }
+
+      it 'matches expected board state after drop' do
+        expected_board =  [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                           [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                           [' ', ' ', ' ', ' ', ' ', pur, ' '],
+                           [' ', ' ', ' ', ' ', ' ', yel, ' '],
+                           [' ', ' ', ' ', yel, ' ', pur, ' '],
+                           [' ', yel, ' ', pur, pur, yel, ' ']]
+        board_with_tokens.drop_token(6, pur)
+        expect(board_with_tokens.board).to eq(expected_board)
+      end
+    end
+
     context 'when the column is full' do
       board_setup = [[' ', ' ', pur, ' ', ' ', ' ', ' '],
                      [' ', ' ', pur, ' ', ' ', ' ', ' '],
