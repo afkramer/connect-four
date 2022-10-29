@@ -163,4 +163,20 @@ describe Board do
       end
     end
   end
+
+  describe '#stalemate?' do
+    context 'when there are still free spots left on the board and no winner' do
+      board_setup = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                     [' ', pur, pur, ' ', ' ', pur, ' '],
+                     [' ', pur, yel, pur, ' ', yel, ' '],
+                     [pur, yel, yel, pur, ' ', yel, pur],
+                     [yel, pur, yel, yel, yel, pur, yel],
+                     [yel, pur, pur, pur, yel, pur, pur]]
+      subject(:board_with_free_spots) { described_class.new(board_setup) }
+
+      it 'returns false' do
+        expect(board_with_free_spots.stalemate?).to be false
+      end
+    end
+  end
 end

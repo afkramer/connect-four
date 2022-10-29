@@ -87,16 +87,3 @@ class Board
     end
   end
 end
-
-pur = "\u2652"
-  yel = "\u264c"
-board_setup = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
-                     [' ', ' ', ' ', ' ', ' ', ' ', yel],
-                     [' ', ' ', ' ', ' ', ' ', yel, pur],
-                     [' ', ' ', ' ', ' ', yel, pur, pur],
-                     [' ', ' ', pur, yel, yel, yel, pur],
-                     [pur, yel, pur, pur, pur, yel, yel]]
-
-board = Board.new(board_setup)
-board.drop_token(2, pur)
-p board.board
