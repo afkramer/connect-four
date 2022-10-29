@@ -27,6 +27,20 @@ describe Board do
         expect(blank_board.board).to eq(expected_board_state)
       end
     end
+
+    context 'when the column is full' do
+      board_setup = [[' ', ' ', pur, ' ', ' ', ' ', ' '],
+                     [' ', ' ', pur, ' ', ' ', ' ', ' '],
+                     [' ', ' ', pur, ' ', ' ', ' ', ' '],
+                     [' ', ' ', pur, ' ', ' ', ' ', ' '],
+                     [' ', ' ', pur, ' ', ' ', ' ', ' '],
+                     [' ', ' ', pur, ' ', ' ', ' ', ' ']]
+      subject(:full_column_board) { described_class.new(board_setup) }
+
+      it 'no change has taken place to the board' do
+        expect{ full_column_board.drop_token(3, yel) }.not_to change(full_column_board, :board)
+      end
+    end
   end
 
   describe '#winner?' do
