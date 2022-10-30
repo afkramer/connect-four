@@ -59,7 +59,23 @@ describe Board do
       subject(:full_column_board) { described_class.new(board_setup) }
 
       it 'no change has taken place to the board' do
-        expect{ full_column_board.drop_token(3, yel) }.not_to change(full_column_board, :board)
+        expect { full_column_board.drop_token(3, yel) }.not_to change(full_column_board, :board)
+      end
+    end
+  end
+
+  describe '#drop_possible?' do
+    context 'when space is available in the column' do
+      board_setup = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                     [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                     [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                     [' ', ' ', ' ', ' ', ' ', yel, ' '],
+                     [' ', ' ', ' ', yel, ' ', pur, ' '],
+                     [' ', yel, ' ', pur, pur, yel, ' ']]
+      subject(:board_space_available) { described_class.new(board_setup) }
+
+      it 'returns true' do
+        expect(board_space_available.drop_possible?).to be true
       end
     end
   end
