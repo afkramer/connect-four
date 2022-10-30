@@ -16,6 +16,12 @@ class Board
   end
 
   # column is from user input (index starts at 1)
+  def drop_possible?(column)
+    first_space = first_free_space(column - 1)
+    first_space.instance_of?(Integer)
+  end
+
+  # column is from user input (index starts at 1)
   def drop_token(column, token)
     target_row = first_free_space(column - 1)
 

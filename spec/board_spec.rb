@@ -75,7 +75,7 @@ describe Board do
       subject(:board_space_available) { described_class.new(board_setup) }
 
       it 'returns true' do
-        expect(board_space_available.drop_possible?).to be true
+        expect(board_space_available.drop_possible?(6)).to be true
       end
     end
   end
