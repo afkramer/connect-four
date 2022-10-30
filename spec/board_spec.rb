@@ -78,6 +78,20 @@ describe Board do
         expect(board_space_available.drop_possible?(6)).to be true
       end
     end
+
+    context 'when no space is available in the column' do
+      board_setup = [[' ', ' ', ' ', ' ', ' ', pur, ' '],
+                     [' ', ' ', ' ', ' ', ' ', yel, ' '],
+                     [' ', ' ', ' ', ' ', ' ', pur, ' '],
+                     [' ', ' ', ' ', ' ', ' ', yel, ' '],
+                     [' ', ' ', ' ', yel, ' ', pur, ' '],
+                     [' ', yel, ' ', pur, pur, yel, ' ']]
+      subject(:board_no_space_available) { described_class.new(board_setup) }
+
+      it 'returns false' do
+        expect(board_no_space_available.drop_possible?(6)).to be false
+      end
+    end
   end
 
   describe '#winner?' do
