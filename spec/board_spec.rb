@@ -178,5 +178,19 @@ describe Board do
         expect(board_with_free_spots.stalemate?).to be false
       end
     end
+
+    context 'when there are no free spots left and no winner' do
+      board_setup = [[yel, yel, pur, pur, yel, yel, pur],
+                     [pur, pur, pur, yel, pur, yel, yel],
+                     [yel, yel, yel, pur, yel, pur, pur],
+                     [yel, pur, yel, pur, yel, pur, yel],
+                     [pur, pur, pur, yel, pur, yel, yel],
+                     [yel, yel, pur, yel, pur, yel, pur]]
+      subject(:full_board_no_winner) { described_class.new(board_setup) }
+
+      it 'returns true' do
+        expect(full_board_no_winner.stalemate?).to be true
+      end
+    end
   end
 end

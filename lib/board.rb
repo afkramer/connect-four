@@ -7,11 +7,12 @@ class Board
   PIECE1 = "\u2652"
   PIECE2 = "\u264c"
   PIECES = [PIECE1, PIECE2].freeze
+  EMPTY_SPOT = ' '
 
   attr_reader :board
 
   def initialize(board = nil)
-    @board = board || Array.new(HEIGHT) { Array.new(WIDTH, ' ') }
+    @board = board || Array.new(HEIGHT) { Array.new(WIDTH, EMPTY_SPOT) }
   end
 
   # column is from user input (index starts at 1)
@@ -23,6 +24,10 @@ class Board
 
   def winner?
     horizontal_win? || vertical_win? || diagonal_down_win? || diagonal_up_win?
+  end
+
+  def stalemate?
+    @board.flatten.none?(EMPTY_SPOT) && !winner?
   end
 
   private
@@ -62,19 +67,23 @@ class Board
     (0...HEIGHT - (NUMBER_TO_CONNECT - 1)).each do |row|
       (0...WIDTH - (NUMBER_TO_CONNECT - 1)).each do |col|
         four_to_check = [@board[row][col], @board[row + 1][col + 1], @board[row + 2][col + 2], @board[row + 3][col + 3]]
-        win = winning_pattern_match?(four_to_check) if winning_pattern_match?(four_to_check)
+        win = winning_pattern_match?(four_to_check)
+        break if win
       end
+      break if win
     end
     win
   end
 
   def diagonal_up_win?
     win = false
-    ((HEIGHT - NUMBER_TO_CONNECT)...(HEIGHT - 1)).to_a.reverse.each do |row|
+    ((HEIGHT - (NUMBER_TO_CONNECT - 1))...HEIGHT).to_a.reverse.each do |row|
       (0...WIDTH - (NUMBER_TO_CONNECT - 1)).each do |col|
         four_to_check = [@board[row][col], @board[row - 1][col + 1], @board[row - 2][col + 2], @board[row - 3][col + 3]]
-        win = winning_pattern_match?(four_to_check) if winning_pattern_match?(four_to_check)
+        win = winning_pattern_match?(four_to_check)
+        break if win
       end
+      break if win
     end
     win
   end
@@ -84,6 +93,19 @@ class Board
     in [*_, PIECE1, PIECE1, PIECE1, PIECE1, *_] | [*_, PIECE2, PIECE2, PIECE2, PIECE2, *_]
       true
     else
+      false
     end
   end
 end
+
+pur = "\u2652"
+yel = "\u264c"
+board_setup = [[' ', ' ', ' ', ' ', ' ', ' ', ' '],
+               [' ', ' ', ' ', ' ', ' ', ' ', yel],
+               [' ', ' ', ' ', ' ', ' ', yel, pur],
+               [' ', ' ', ' ', ' ', yel, pur, pur],
+               [' ', ' ', pur, yel, yel, yel, pur],
+               [pur, yel, pur, pur, pur, yel, yel]]
+
+board = Board.new(board_setup)
+puts board.winner?
