@@ -7,7 +7,7 @@ class Board
   PIECE1 = "\u2652"
   PIECE2 = "\u264c"
   PIECES = [PIECE1, PIECE2].freeze
-  EMPTY_SPOT = ' '
+  EMPTY_SPOT = '  '
 
   attr_reader :board
 
