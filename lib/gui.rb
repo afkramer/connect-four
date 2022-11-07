@@ -4,6 +4,10 @@ require_relative 'board'
 
 class Gui
   def display_board(board)
+    starting_row = "\n"
+    (1..board[1].length).each { |num| starting_row << "  #{num}  " }
+    puts starting_row
+    puts
     board.each do |row|
       line = '|'
       row.each do |space|
