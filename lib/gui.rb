@@ -23,6 +23,19 @@ class Gui
       puts "#{'-----' * row.length}-"
     end
   end
+
+  def display_winner(name)
+    puts "\nCongratulations, #{name}! You won!"
+  end
+
+  def display_stalemate
+    puts "\nIt's a draw! Better luck next time."
+  end
+
+  def get_play_again
+    puts "\nWould you like to play again? Type 'y' to play again or any other key to quit.\n\n"
+    gets.chomp
+  end
 end
 
 pur = "\u2652"
@@ -36,4 +49,7 @@ board_setup = [['  ', '  ', '  ', '  ', '  ', '  ', '  '],
 #board = Board.new(board_setup)
 gui = Gui.new
 #gui.display_board(board.board)
-gui.get_player_name(1, pur)
+#gui.get_player_name(1, pur)
+gui.display_winner('Adri')
+gui.display_stalemate
+gui.get_play_again
