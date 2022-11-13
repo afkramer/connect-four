@@ -9,7 +9,7 @@ class Board
   PIECES = [PIECE1, PIECE2].freeze
   EMPTY_SPOT = '  '
 
-  attr_reader :board, :WIDTH
+  attr_reader :board
 
   def initialize(board = nil)
     @board = board || Array.new(HEIGHT) { Array.new(WIDTH, EMPTY_SPOT) }
