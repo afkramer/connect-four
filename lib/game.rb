@@ -8,8 +8,8 @@ class Game
 
   def initialize(player1 = nil, player2 = nil)
     @board = Board.new
-    @player1 = player1 || Player.new()
-    @player2 = player2 || Player.new()
+    @player1 = player1 || Player.new(Board::PIECE1, 1)
+    @player2 = player2 || Player.new(Board::PIECE2, 2)
     @active_player = @player1
   end
 
@@ -24,8 +24,8 @@ class Game
   end
   
   def set_up_players
-    @player1 = Player.new(Board::PIECE1, 1)
-    @player2 = Player.new(Board::PIECE2, 2)
+    @player1.assign_name
+    @player2.assign_name
   end
 
   def valid_input?(input)

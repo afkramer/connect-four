@@ -39,9 +39,11 @@ describe Game do
   end
 
   describe '#switch_active_players' do
-    subject(:game_new) { described_class.new }
+    player1 = Player.new(Board::PIECE1, 1, 'Normi')
+    player2 = Player.new(Board::PIECE2, 2, 'Sandy')
+    subject(:game_new) { described_class.new(player1, player2) }
     it 'changes the active player from one to two' do
-      expect{ game_new.switch_active_players }.to change(game_new, :active_player).from(:player1).to(:player2)
+      expect{ game_new.switch_active_players }.to change(game_new, :active_player).from(player1).to(player2)
     end
   end
 end
