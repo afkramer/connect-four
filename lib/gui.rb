@@ -9,6 +9,10 @@ class Gui
     gets.chomp
   end
 
+  def display_invalid_input
+    puts "\nSorry, that's invalid input. Try again."
+  end
+
   def display_board(board)
     starting_row = "\n"
     (1..board[1].length).each { |num| starting_row << "  #{num}  " }
@@ -46,10 +50,3 @@ board_setup = [['  ', '  ', '  ', '  ', '  ', '  ', '  '],
                ['  ', yel, yel, pur, '  ', '  ', pur],
                [yel, pur, yel, yel, yel, '  ', yel],
                [yel, pur, pur, pur, yel, pur, pur]]
-#board = Board.new(board_setup)
-gui = Gui.new
-#gui.display_board(board.board)
-#gui.get_player_name(1, pur)
-gui.display_winner('Adri')
-gui.display_stalemate
-gui.get_play_again

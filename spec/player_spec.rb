@@ -4,7 +4,6 @@ require_relative '../lib/player'
 require_relative '../lib/board'
 
 describe Player do
-
   describe '#switch_turn' do
     context 'the player is the active player' do
       subject(:player_has_turn) { described_class.new(Board::PIECE1, 'Martina') }

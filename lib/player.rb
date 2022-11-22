@@ -1,18 +1,29 @@
 # frozen_string_literal: true
 
-class Player
-  attr_reader :has_turn
+require_relative 'gui'
 
-  def initialize(token, name = nil)
+class Player
+  attr_reader :has_turn, :name
+
+  def initialize(token, number, name = nil)
+    @gui = Gui.new
     @token = token
-    @name = name || assign_name
+    @number = number
+    @name = name
     @has_turn = token == "\u2652"
   end
 
   def assign_name
-    # Start here
-    # Create a method in the Gui that gets a name
-    # Make sure it's not blank
+    loop do
+      name = @gui.get_player_name(@number, @token)
+      return name if valid_name?(name)
+
+      @gui.display_invalid_input
+    end
+  end
+
+  def valid_name?(name)
+    name != ''
   end
 
   def switch_turn
