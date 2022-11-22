@@ -23,6 +23,7 @@ class Game
   def take_turn
   end
   
+  # How to make sure that both players don't take the same name?
   def set_up_players
     @player1.assign_name
     @player2.assign_name
@@ -33,7 +34,6 @@ class Game
   end
 
   def switch_active_players
-    #@active_player == @player1 ? @active_player = @player2 : @active_player = @player1
     @active_player =  if @active_player == @player1
                         @player2
                       else
