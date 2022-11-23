@@ -28,6 +28,11 @@ class Gui
     end
   end
 
+  def get_desired_column(name)
+    puts "\n#{name}, please choose a column to drop your token.\n\n"
+    gets.chomp
+  end
+
   def display_winner(name)
     puts "\nCongratulations, #{name}! You won!"
   end
