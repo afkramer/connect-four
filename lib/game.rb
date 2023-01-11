@@ -36,8 +36,16 @@ class Game
     @player2.assign_name
   end
 
+  # START HERE: the input is a string at the moment! 
+  # How can I convert to int without causing errors?
   def take_turn
     chosen_column = @gui.get_desired_column(@active_player.name)
+    until valid_input?(chosen_column)
+      @gui.display_invalid_input
+      chosen_column = @gui.get_desired_column(@active_player.name)
+    end
+
+
   end
 
   def end_game
