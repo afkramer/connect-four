@@ -11,7 +11,8 @@
             "script": "${file}",
             "args": [],
             "askParameters": true,
-            "rdbgPath": "/home/adri/.rbenv/shims/rdbg"
+            "rdbgPath": "/home/adri/.rbenv/shims/rdbg",
+            "useTerminal": true
         },
         {
             "type": "rdbg",

@@ -4,7 +4,7 @@ require_relative 'board'
 
 class Gui
   def start_game
-    puts "\nPlaceholder."
+    puts 'Welcome to Connect 4!'
   end
   
   def get_player_name(player_number, token)

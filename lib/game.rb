@@ -3,6 +3,7 @@
 require_relative 'board'
 require_relative 'player'
 
+# All methods for playing a game of Connect 4
 class Game
   attr_reader :active_player
 
@@ -36,16 +37,18 @@ class Game
     @player2.assign_name
   end
 
+  # TODO: clean up when board is shown and how command line looks
+  # Any last tests that I need to do?
   def take_turn
-    @gui.display_board(@board)
+    @gui.display_board(@board.board)
     chosen_column = @gui.get_desired_column(@active_player.name).to_i
     until valid_input?(chosen_column)
       @gui.display_invalid_input
-      @gui.display_board(@board)
+      @gui.display_board(@board.board)
       chosen_column = @gui.get_desired_column(@active_player.name).to_i
     end
     @board.drop_token(chosen_column, @active_player.token)
-    @gui.display_board(@board)
+    @gui.display_board(@board.board)
   end
 
   def end_game
@@ -54,8 +57,9 @@ class Game
   end
 
   def play_again
-    if @board.get_play_again.downcase == 'y'
+    if @gui.get_play_again.downcase == 'y'
       @board = Board.new
+      switch_active_players
       play_game
     else
       @gui.display_thanks_for_playing
