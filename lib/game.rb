@@ -37,6 +37,7 @@ class Game
   end
 
   def take_turn
+    @board.display_board
     chosen_column = @gui.get_desired_column(@active_player.name).to_i
     until valid_input?(chosen_column)
       @gui.display_invalid_input
