@@ -30,22 +30,18 @@ class Game
     end_game
   end
 
-  # How to make sure that both players don't take the same name?
   def set_up_players
     @player1.assign_name
     @player2.assign_name
   end
 
-  # START HERE: the input is a string at the moment! 
-  # How can I convert to int without causing errors?
   def take_turn
-    chosen_column = @gui.get_desired_column(@active_player.name)
+    chosen_column = @gui.get_desired_column(@active_player.name).to_i
     until valid_input?(chosen_column)
       @gui.display_invalid_input
-      chosen_column = @gui.get_desired_column(@active_player.name)
+      chosen_column = @gui.get_desired_column(@active_player.name).to_i
     end
-
-
+    @board.drop_token(chosen_column, @active_player.token)
   end
 
   def end_game
@@ -57,7 +53,7 @@ class Game
   end
 
   def valid_input?(input)
-    input.instance_of?(Integer) && input.positive? && input <= Board::WIDTH
+    input.instance_of?(Integer) && input.positive? && input <= Board::WIDTH && @board.drop_possible?(input)
   end
 
   def switch_active_players
