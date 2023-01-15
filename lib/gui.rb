@@ -3,6 +3,10 @@
 require_relative 'board'
 
 class Gui
+  def start_game
+    puts "\nPlaceholder."
+  end
+  
   def get_player_name(player_number, token)
     puts "\nPlayer #{player_number}, you will play as #{token}."
     puts "Please enter your name.\n\n"
@@ -47,7 +51,7 @@ class Gui
   end
 
   def display_thanks_for_playing
-    puts '\nThanks for playing!'
+    puts "\nThanks for playing!"
   end
 end
 

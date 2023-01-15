@@ -3,7 +3,7 @@
 require_relative 'gui'
 
 class Player
-  attr_reader :name
+  attr_reader :name, :token
 
   def initialize(token, number, name = nil)
     @gui = Gui.new
@@ -14,8 +14,8 @@ class Player
 
   def assign_name
     loop do
-      name = @gui.get_player_name(@number, @token)
-      return name if valid_name?(name)
+      @name = @gui.get_player_name(@number, @token)
+      return @name if valid_name?(@name)
 
       @gui.display_invalid_input
     end

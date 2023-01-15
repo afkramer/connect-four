@@ -17,7 +17,7 @@ class Game
 
   def play_game
     if @first_game
-      gui.start_game
+      @gui.start_game
       set_up_players
       @first_game = false
     end
