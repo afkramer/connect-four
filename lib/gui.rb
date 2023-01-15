@@ -45,6 +45,10 @@ class Gui
     puts "\nWould you like to play again? Type 'y' to play again or any other key to quit.\n\n"
     gets.chomp
   end
+
+  def display_thanks_for_playing
+    puts '\nThanks for playing!'
+  end
 end
 
 pur = "\u2652"

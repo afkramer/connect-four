@@ -19,6 +19,7 @@ class Game
     if @first_game
       gui.start_game
       set_up_players
+      @first_game = false
     end
 
     loop do
@@ -50,6 +51,12 @@ class Game
   end
 
   def play_again
+    if @board.get_play_again.downcase == 'y'
+      @board = Board.new
+      play_game
+    else
+      @gui.display_thanks_for_playing
+    end
   end
 
   def valid_input?(input)
