@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
-require_relative 'game'
+require_relative '../lib/game'
 
-game = Game.new
-game.play_game
+def main
+  game = Game.new
+  game.play_game
+end
+
+main

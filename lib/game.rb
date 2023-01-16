@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'board'
-require_relative 'player'
+require_relative '../lib/board'
+require_relative '../lib/player'
 
 # All methods for playing a game of Connect 4
 class Game
@@ -37,8 +37,6 @@ class Game
     @player2.assign_name
   end
 
-  # TODO: clean up when board is shown and how command line looks
-  # Any last tests that I need to do?
   def take_turn
     @gui.display_board(@board.board)
     chosen_column = @gui.get_desired_column(@active_player.name).to_i
@@ -48,7 +46,6 @@ class Game
       chosen_column = @gui.get_desired_column(@active_player.name).to_i
     end
     @board.drop_token(chosen_column, @active_player.token)
-    @gui.display_board(@board.board)
   end
 
   def end_game

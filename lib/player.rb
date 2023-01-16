@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'gui'
+require_relative '../lib/gui'
 
 class Player
   attr_reader :name, :token
@@ -20,6 +20,8 @@ class Player
       @gui.display_invalid_input
     end
   end
+
+  private
 
   def valid_name?(name)
     name != ''

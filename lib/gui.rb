@@ -1,9 +1,10 @@
 # frozen_string_literal: false
 
-require_relative 'board'
+require_relative '../lib/board'
 
 class Gui
   def start_game
+    puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
     puts 'Welcome to Connect 4!'
   end
   
@@ -15,9 +16,11 @@ class Gui
 
   def display_invalid_input
     puts "\nSorry, that's invalid input. Try again."
+    sleep 2
   end
 
   def display_board(board)
+    puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
     starting_row = "\n"
     (1..board[1].length).each { |num| starting_row << "  #{num}  " }
     puts starting_row
@@ -39,10 +42,12 @@ class Gui
 
   def display_winner(name)
     puts "\nCongratulations, #{name}! You won!"
+    sleep 2
   end
 
   def display_stalemate
     puts "\nIt's a draw! Better luck next time."
+    sleep 2
   end
 
   def get_play_again
@@ -51,15 +56,7 @@ class Gui
   end
 
   def display_thanks_for_playing
-    puts "\nThanks for playing!"
+    puts "\nThanks for playing!\n\n\n"
+    sleep 2
   end
 end
-
-pur = "\u2652"
-yel = "\u264c"
-board_setup = [['  ', '  ', '  ', '  ', '  ', '  ', '  '],
-               ['  ', pur, pur, '  ', '  ', '  ', '  '],
-               ['  ', pur, yel, pur, '  ', '  ', '  '],
-               ['  ', yel, yel, pur, '  ', '  ', pur],
-               [yel, pur, yel, yel, yel, '  ', yel],
-               [yel, pur, pur, pur, yel, pur, pur]]

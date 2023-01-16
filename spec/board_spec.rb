@@ -6,6 +6,36 @@ describe Board do
   purp = "\u2652"
   yell = "\u264c"
 
+  describe '#drop_possible?' do
+    context 'when space is available in the column' do
+      board_setup = [['  ', '  ', '  ', '  ', '  ', '  ', '  '],
+                     ['  ', '  ', '  ', '  ', '  ', '  ', '  '],
+                     ['  ', '  ', '  ', '  ', '  ', '  ', '  '],
+                     ['  ', '  ', '  ', '  ', '  ', yell, '  '],
+                     ['  ', '  ', '  ', yell, '  ', purp, '  '],
+                     ['  ', yell, '  ', purp, purp, yell, '  ']]
+      subject(:board_space_available) { described_class.new(board_setup) }
+
+      it 'returns true' do
+        expect(board_space_available.drop_possible?(6)).to be true
+      end
+    end
+
+    context 'when no space is available in the column' do
+      board_setup = [['  ', '  ', '  ', '  ', '  ', purp, '  '],
+                     ['  ', '  ', '  ', '  ', '  ', yell, '  '],
+                     ['  ', '  ', '  ', '  ', '  ', purp, '  '],
+                     ['  ', '  ', '  ', '  ', '  ', yell, '  '],
+                     ['  ', '  ', '  ', yell, '  ', purp, '  '],
+                     ['  ', yell, '  ', purp, purp, yell, '  ']]
+      subject(:board_no_space_available) { described_class.new(board_setup) }
+
+      it 'returns false' do
+        expect(board_no_space_available.drop_possible?(6)).to be false
+      end
+    end
+  end
+  
   describe '#drop_token' do
     context 'when the board is empty' do
       board_setup = [['  ', '  ', '  ', '  ', '  ', '  ', '  '],
@@ -60,36 +90,6 @@ describe Board do
 
       it 'no change has taken place to the board' do
         expect { full_column_board.drop_token(3, yell) }.not_to change(full_column_board, :board)
-      end
-    end
-  end
-
-  describe '#drop_possible?' do
-    context 'when space is available in the column' do
-      board_setup = [['  ', '  ', '  ', '  ', '  ', '  ', '  '],
-                     ['  ', '  ', '  ', '  ', '  ', '  ', '  '],
-                     ['  ', '  ', '  ', '  ', '  ', '  ', '  '],
-                     ['  ', '  ', '  ', '  ', '  ', yell, '  '],
-                     ['  ', '  ', '  ', yell, '  ', purp, '  '],
-                     ['  ', yell, '  ', purp, purp, yell, '  ']]
-      subject(:board_space_available) { described_class.new(board_setup) }
-
-      it 'returns true' do
-        expect(board_space_available.drop_possible?(6)).to be true
-      end
-    end
-
-    context 'when no space is available in the column' do
-      board_setup = [['  ', '  ', '  ', '  ', '  ', purp, '  '],
-                     ['  ', '  ', '  ', '  ', '  ', yell, '  '],
-                     ['  ', '  ', '  ', '  ', '  ', purp, '  '],
-                     ['  ', '  ', '  ', '  ', '  ', yell, '  '],
-                     ['  ', '  ', '  ', yell, '  ', purp, '  '],
-                     ['  ', yell, '  ', purp, purp, yell, '  ']]
-      subject(:board_no_space_available) { described_class.new(board_setup) }
-
-      it 'returns false' do
-        expect(board_no_space_available.drop_possible?(6)).to be false
       end
     end
   end
