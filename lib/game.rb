@@ -49,6 +49,7 @@ class Game
   end
 
   def end_game
+    @gui.display_board(@board.board)
     @board.winner? ? @gui.display_winner(@active_player.name) : @gui.display_stalemate
     play_again
   end
